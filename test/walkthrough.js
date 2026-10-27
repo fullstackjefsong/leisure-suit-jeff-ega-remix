@@ -6,7 +6,7 @@ const vm = require('vm');
 const assert = require('assert');
 
 const root = path.join(__dirname, '..');
-const files = ['registry.js', 'content/world.js', 'content/items.js', 'content/home.js', 'content/work.js', 'content/costco.js', 'content/music.js', 'engine.js', 'audio.js'];
+const files = ['registry.js', 'content/world.js', 'content/items.js', 'content/home.js', 'content/work.js', 'content/costco.js', 'content/music.js', 'engine.js', 'graphics.js', 'audio.js'];
 for (const f of files) vm.runInThisContext(fs.readFileSync(path.join(root, 'js', f), 'utf8'), { filename: f });
 
 const { Engine: E } = LSJ;
@@ -60,6 +60,95 @@ check('soundtrack compiles; every destination has a theme', () => {
   ['points', 'death', 'fanfare', 'title'].forEach((id) => assert.ok(LSJ.music.songs[id], 'missing song ' + id));
 });
 
+check('EGA renderer covers every room and special screen in exactly 16 colors', () => {
+  E.start();
+  const G = LSJ.Graphics;
+  assert.deepStrictEqual([...G.roomScenes].sort(), Object.keys(LSJ.rooms).sort());
+  assert.deepStrictEqual([...G.palette], [
+    '#000000', '#0000aa', '#00aa00', '#00aaaa', '#aa0000', '#aa00aa', '#aa5500', '#aaaaaa',
+    '#555555', '#5555ff', '#55ff55', '#55ffff', '#ff5555', '#ff55ff', '#ffff55', '#ffffff',
+  ]);
+  const before = JSON.stringify(E.state);
+  const hashes = new Set();
+  for (const scene of G.scenes) {
+    const frame = G.render(scene, E.state);
+    assert.ok(frame instanceof Uint8Array);
+    assert.strictEqual(frame.length, 320 * 200, scene + ' dimensions');
+    assert.ok(frame.every((color) => color < 16), scene + ' exceeds the EGA palette');
+    assert.ok(new Set(frame).size >= 8, scene + ' lacks illustrated detail');
+    assert.deepStrictEqual(frame, G.render(scene, E.state), scene + ' should be deterministic');
+    hashes.add(require('crypto').createHash('sha256').update(frame).digest('hex'));
+  }
+  assert.strictEqual(hashes.size, G.scenes.length, 'every scene needs distinct artwork');
+  assert.strictEqual(JSON.stringify(E.state), before, 'drawing must not alter gameplay');
+  assert.throws(() => G.render('missing_scene', E.state), /Unknown graphics scene/);
+  assert.throws(() => G.render('work_cubes'), /valid game state/);
+});
+
+check('EGA scene props follow gameplay flags and inventory', () => {
+  E.start();
+  const cases = [
+    ['work_cubes', (s) => s.inventory.push('tps_report')],
+    ['work_cubes', (s) => { s.flags.stapler_lent = true; }],
+    ['work_cubes', (s) => { s.flags.stapler_lent = true; s.flags.stapler_returned = true; }, { stapler_lent: true }],
+    ['work_break', (s) => { s.flags.printer_loaded = true; }],
+    ['work_break', (s) => { s.flags.cover_in_tray = true; }],
+    ['work_break', (s) => { s.flags.cake_taken = true; }],
+    ['work_break', (s) => { s.flags.table_down = true; }],
+    ['work_break', (s) => { s.flags.fridge_open_w = true; }],
+    ['work_break', (s) => { s.flags.flair_taken = true; }],
+    ['work_boss', (s) => { s.flags.report_given = true; }],
+    ['home_living', (s) => { s.flags.messages_heard = true; }],
+    ['home_living', (s) => { s.flags.home_fridge_open = true; }],
+    ['home_bath', (s) => { s.flags.cabinet_open = true; }],
+    ['home_bath', (s) => s.inventory.push('comb'), { cabinet_open: true }],
+    ['home_bath', (s) => { s.flags.cologne_taken = true; }, { cabinet_open: true }],
+    ['home_lot', (s) => { s.carAt = 'costco'; }],
+    ['home_lot', (s) => { s.flags.hood_open = true; }],
+    ['home_lot', (s) => { s.flags.car_fixed = true; }, { hood_open: true }],
+    ['costco_lot', (s) => { s.carAt = 'costco'; }],
+    ['costco_lot', (s) => s.inventory.push('cart')],
+    ['costco_lot', (s) => { s.minutes = LSJ.config.costcoClose; }],
+    ['costco_entrance', (s) => { s.flags.membership_valid = true; }],
+    ['costco_aisles', (s) => { s.flags.sample_eaten = true; }],
+    ['costco_aisles', (s) => { s.flags.pen_taken = true; }, { sample_eaten: true }],
+    ['costco_tire', (s) => s.inventory.push('battery'), {}, ['cart']],
+    ['work_cubes', (s) => { s.minutes = 19 * 60; }],
+    ['home_lot', (s) => { s.minutes = 19 * 60; }],
+  ];
+  for (const [scene, change, flags = {}, inventory = []] of cases) {
+    const state = JSON.parse(JSON.stringify(E.state));
+    Object.assign(state.flags, flags);
+    state.inventory.push(...inventory);
+    const before = LSJ.Graphics.render(scene, state);
+    change(state);
+    assert.notDeepStrictEqual(LSJ.Graphics.render(scene, state), before, scene + ': state change should affect the picture');
+  }
+});
+
+check('Canvas output uses opaque palette pixels without smoothing', () => {
+  E.start();
+  let painted;
+  const ctx = {
+    imageSmoothingEnabled: true,
+    createImageData: (w, h) => ({ data: new Uint8ClampedArray(w * h * 4) }),
+    putImageData: (image, x, y) => { assert.strictEqual(x, 0); assert.strictEqual(y, 0); painted = image.data; },
+  };
+  const canvas = { getContext: (type) => { assert.strictEqual(type, '2d'); return ctx; } };
+  LSJ.Graphics.draw(canvas, 'work_cubes', E.state);
+  assert.strictEqual(canvas.width, 320);
+  assert.strictEqual(canvas.height, 200);
+  assert.strictEqual(ctx.imageSmoothingEnabled, false);
+  const frame = LSJ.Graphics.render('work_cubes', E.state);
+  for (let i = 0; i < frame.length; i++) {
+    const hex = LSJ.Graphics.palette[frame[i]];
+    assert.strictEqual(painted[i * 4], parseInt(hex.slice(1, 3), 16));
+    assert.strictEqual(painted[i * 4 + 1], parseInt(hex.slice(3, 5), 16));
+    assert.strictEqual(painted[i * 4 + 2], parseInt(hex.slice(5, 7), 16));
+    assert.strictEqual(painted[i * 4 + 3], 255);
+  }
+});
+
 check('all score ids are reachable keys & exits valid', () => {
   for (const r of Object.values(LSJ.rooms)) for (const e of r.exits || []) {
     assert.ok(LSJ.rooms[e.to], `${r.id} exit -> ${e.to}`);
@@ -98,6 +187,14 @@ check('Act I walkthrough completes', () => {
 });
 
 check('art fits in end-state for all rooms', () => { E.state.ended = null; artAllRooms(); });
+
+check('EGA artwork renders every scene with the completed game state', () => {
+  for (const scene of LSJ.Graphics.scenes) {
+    const frame = LSJ.Graphics.render(scene, E.state);
+    assert.strictEqual(frame.length, 64000);
+    assert.ok(frame.every((color) => color < 16), scene + ' end-state palette');
+  }
+});
 
 check('sleep before done does not end act', () => {
   E.start();

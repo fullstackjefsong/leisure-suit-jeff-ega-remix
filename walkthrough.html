@@ -50,7 +50,7 @@
     .box p, ol.steps li { text-align: left; }
     .tag { font: 10px 'Press Start 2P', monospace; display: inline-block; background: var(--red); color: #fff; padding: 3px 5px; margin-bottom: 6px; }
     figure.shot { margin: 10px 0 14px; background: #111; border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--red); padding: 8px 8px 6px; }
-    figure.shot pre { margin: 0; color: var(--amber); font: 8.6px/1.12 'Courier New', monospace; overflow: hidden; text-shadow: 0 0 3px #ffb00088; white-space: pre; }
+    figure.shot canvas { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; background: #000; image-rendering: pixelated; }
     figure.shot figcaption { color: #fff; font: 15px/1.2 'Archivo Narrow', sans-serif; font-style: italic; margin-top: 6px; border-top: 1px solid #fff4; padding-top: 5px; }
     figure.shot figcaption b { color: var(--yel); font-style: normal; }
     .crew { padding: 4px 22px 18px; }
@@ -126,7 +126,7 @@
     </div>
 
     <h2>Part 1: Synergex Solutions<small>FRIDAY, 2:30 PM &middot; 43 POINTS</small></h2>
-    <figure class="shot"><pre data-room="work_cubes"></pre><figcaption><b>CUBICLE FARM:</b> A gray maze of fabric walls and broken dreams. Merv is NOT going to give up that stapler for free.</figcaption></figure>
+    <figure class="shot"><canvas data-room="work_cubes" width="320" height="200" role="img"></canvas><figcaption><b>CUBICLE FARM:</b> A gray maze of fabric walls and broken dreams. Merv is NOT going to give up that stapler for free.</figcaption></figure>
 
     <h3>Your Cubicle</h3>
     <ol class="steps">
@@ -148,7 +148,7 @@
       <li><kbd>TAKE FLAIR</kbd>, then <kbd>WEAR FLAIR</kbd> <span class="pts">+2</span> Minimum flair achieved!</li>
     </ol>
 
-    <figure class="shot"><pre data-room="work_break"></pre><figcaption><b>BREAK ROOM:</b> Mandatory Fun Friday. That printer is your nemesis. That yogurt is somebody else's.</figcaption></figure>
+    <figure class="shot"><canvas data-room="work_break" width="320" height="200" role="img"></canvas><figcaption><b>BREAK ROOM:</b> Mandatory Fun Friday. That printer is your nemesis. That yogurt is somebody else's.</figcaption></figure>
 
     <h3>Merv's Cubicle &amp; The Boss</h3>
     <ol class="steps">
@@ -182,7 +182,7 @@
     </div>
 
     <h2>Part 2: Shady Pines<small>HOME SWEET HOME &middot; 17 POINTS</small></h2>
-    <figure class="shot"><pre data-room="home_lot"></pre><figcaption><b>SHADY PINES:</b> There are no pines. There is no shade. There IS a dumpster, and it's hiding something valuable.</figcaption></figure>
+    <figure class="shot"><canvas data-room="home_lot" width="320" height="200" role="img"></canvas><figcaption><b>SHADY PINES:</b> There are no pines. There is no shade. There IS a dumpster, and it's hiding something valuable.</figcaption></figure>
     <ol class="steps">
       <li><kbd>TAKE BUS HOME</kbd> <span class="cash neg">-$2.00</span></li>
       <li><kbd>SEARCH DUMPSTER</kbd> <span class="pts">+4</span> A <b>$10-off battery coupon</b>, valid TODAY ONLY! It smells like pepperoni. Do NOT skip this!</li>
@@ -212,7 +212,7 @@
       <li><kbd>TAKE PEN</kbd> <span class="pts">+4</span> Marge's free Stain-B-Gone pen!</li>
       <li><kbd>CLEAN SUIT WITH PEN</kbd> <span class="pts">+10</span> Ohio shrinks to Rhode Island... then vanishes!</li>
     </ol>
-    <figure class="shot"><pre data-room="costco_aisles"></pre><figcaption><b>THE AISLES:</b> Sizes meant for a family of forty. Marge has what you need. The mayo does NOT.</figcaption></figure>
+    <figure class="shot"><canvas data-room="costco_aisles" width="320" height="200" role="img"></canvas><figcaption><b>THE AISLES:</b> Sizes meant for a family of forty. Marge has what you need. The mayo does NOT.</figcaption></figure>
     <ol class="steps" start="10" style="counter-reset: s 9">
       <li><kbd>GO TIRE CENTER</kbd></li>
       <li><kbd>BUY BATTERY</kbd> <span class="pts">+8</span> <span class="pts">+2</span> <span class="cash neg">-$79.99</span> Rusty takes the pepperoni coupon, so the DieHarder costs $79.99 instead of $89.99. "Red to red, black to black, chief."</li>
@@ -315,23 +315,17 @@ COSTCO
 <script src="js/content/work.js"></script>
 <script src="js/content/costco.js"></script>
 <script src="js/engine.js"></script>
+<script src="js/graphics.js"></script>
 <script>
   // "Screenshots" and the point list come straight from the game data so they never drift.
   (function () {
     var E = LSJ.Engine;
     E.start();
-    document.querySelectorAll('pre[data-room]').forEach(function (pre) {
-      E.state.room = pre.dataset.room;
-      pre.textContent = E.view().art.replace(/^\n/, '');
+    document.querySelectorAll('canvas[data-room]').forEach(function (canvas) {
+      E.state.room = canvas.dataset.room;
+      LSJ.Graphics.draw(canvas, canvas.dataset.room, E.state);
+      canvas.setAttribute('aria-label', 'EGA screenshot: ' + E.view().title);
     });
-    function fitShots() {
-      document.querySelectorAll('figure.shot pre').forEach(function (pre) {
-        var cols = Math.max.apply(null, pre.textContent.split('\n').map(function (l) { return l.length; }));
-        pre.style.fontSize = Math.min(12, pre.clientWidth / (cols * 0.6)) + 'px';
-      });
-    }
-    fitShots();
-    window.addEventListener('resize', fitShots);
 
     var groups = [
       ['SYNERGEX', ['read_memo', 'take_report', 'print_cover', 'solitaire', 'kick_printer', 'load_printer', 'get_cover', 'take_cake', 'wear_flair', 'merv_stapler', 'staple_report', 'return_stapler', 'paid', 'talk_peggy', 'talk_todds']],

@@ -52,7 +52,7 @@ body {
 }
 
 #screen {
-  width: 80ch;
+  width: min(80ch, calc(100vw - 72px));
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -74,16 +74,14 @@ body {
 
 #art {
   margin: 0;
-  height: calc(16 * 1.05em + 8px);
-  overflow: hidden;
-  white-space: pre;
-  font-family: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  display: block;
+  background: #000;
+  image-rendering: pixelated;
 }
-
-#art.death { color: #ff6a3d; text-shadow: 0 0 6px rgba(255, 80, 40, 0.6); }
 
 #panel div { margin: 1px 0; }
 #loc { font-weight: bold; letter-spacing: 1px; }

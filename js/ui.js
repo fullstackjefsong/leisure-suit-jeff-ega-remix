@@ -102,25 +102,20 @@
     const v = E.view();
     $('st-score').textContent = `Score: ${v.score} of ${v.maxScore}`;
     $('st-right').textContent = `${v.time}  ${v.money}`;
-    const art = $('art');
-    art.classList.toggle('death', !!v.dead);
-    if (v.dead) art.textContent = LSJ.config.deathArt + '\n\n' + centered(v.dead.title);
-    else if (v.ended) art.textContent = LSJ.config.endArt;
-    else art.textContent = v.art.replace(/^\n/, '');
+    const scene = v.dead ? 'death' : v.ended ? 'ending' : E.state.room;
+    const description = v.dead ? 'GAME OVER: ' + v.dead.title : v.ended ? v.ended.title : v.title;
+    LSJ.Graphics.draw($('art'), scene, E.state);
+    $('art').setAttribute('aria-label', description + '. Scene details, objects, and exits are listed below.');
     $('loc').textContent = v.dead ? '*** GAME OVER ***' : v.title;
     fillChips($('see'), v.objects, (o) => o.name, (o) => insertNoun(o.name));
     fillChips($('exits'), v.exits, (e) => e.label, (e) => run('go ' + e.label.replace(/\s*\(.*\)$/, '')));
     fillChips($('travel'), v.travel, (t) => t.name, (t) => run('go to ' + t.name.toLowerCase()));
   }
 
-  function centered(s) {
-    const pad = Math.max(0, Math.floor((60 - s.length) / 2));
-    return ' '.repeat(pad) + s;
-  }
-
   function showTitle() {
     onTitle = true;
-    $('art').textContent = LSJ.config.titleArt.replace(/^\n/, '');
+    LSJ.Graphics.draw($('art'), 'title');
+    $('art').setAttribute('aria-label', 'Title screen: Jeff in his powder-blue leisure suit at his desk late at night, under a neon JEFF sign.');
     $('loc').textContent = 'A Polyester Software Production';
     $('see').textContent = '';
     $('exits').textContent = '';
