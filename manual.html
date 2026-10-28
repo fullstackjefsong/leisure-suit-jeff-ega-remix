@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leisure Suit Jeff: Player's Manual - Polyester Software, 1987</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Crimson+Pro:ital,wght@0,400;0,700;1,400&family=Libre+Franklin:wght@400;700;900&family=Shrikhand&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1b1712; --paper: #fbf6e6; --blue: #8ec9ec; --blue-d: #2c6d97; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px 12px 40px; color: var(--ink); font: 18px/1.55 'Crimson Pro', Georgia, serif;
+    background: #4a3324 repeating-linear-gradient(92deg, #0000 0 22px, #0000000f 22px 25px, #0000 25px 61px, #ffffff08 61px 63px); }
+  .page { position: relative; max-width: 780px; margin: 0 auto 30px; padding: 46px 56px 64px; background: var(--paper);
+    box-shadow: 0 2px 0 #e7dcc0, 0 4px 0 #d9cba8, 0 14px 30px #000a; }
+  .folio { position: absolute; left: 0; right: 0; bottom: 20px; text-align: center; font: 700 11px 'Libre Franklin', Arial, sans-serif; letter-spacing: 4px; }
+  h1, h2, h3 { font-family: 'Libre Franklin', Arial, sans-serif; line-height: 1.1; }
+  h2 { font-size: 30px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 18px; padding-bottom: 6px; border-bottom: 5px solid var(--ink); box-shadow: 0 4px 0 var(--paper), 0 6px 0 var(--ink); }
+  h3 { font-size: 19px; font-weight: 900; text-transform: uppercase; margin: 26px 0 8px; }
+  p { margin: 0 0 12px; }
+  a { color: var(--blue-d); }
+  kbd { font: 700 0.86em 'Courier Prime', 'Courier New', monospace; background: #fff; border: 1.5px solid var(--ink); border-bottom-width: 3px; border-radius: 3px; padding: 0 5px; white-space: nowrap; }
+  .mono { font-family: 'Courier Prime', 'Courier New', monospace; }
+  .two { columns: 2; column-gap: 34px; }
+  .two > * { break-inside: avoid; }
+  .box { border: 3px solid var(--ink); padding: 14px 18px; margin: 18px 0; background: #fff; }
+  .box.blue { background: var(--blue); }
+  .box h3 { margin-top: 0; }
+  .stamp { display: inline-block; font: 900 12px 'Libre Franklin', Arial, sans-serif; letter-spacing: 2px; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 3px 8px; margin-bottom: 8px; }
+
+  /* cover */
+  .cover { padding: 0; overflow: hidden; background: var(--blue); }
+  .cover .band { display: flex; justify-content: space-between; align-items: center; background: var(--ink); color: var(--paper); padding: 10px 22px; font: 900 12px 'Libre Franklin', Arial, sans-serif; letter-spacing: 3px; }
+  .cover .band .ps { display: inline-flex; align-items: center; gap: 8px; }
+  .cover .band .ps i { display: inline-grid; place-items: center; width: 26px; height: 26px; transform: rotate(45deg); background: var(--blue); color: var(--ink); font-style: normal; }
+  .cover .band .ps i b { transform: rotate(-45deg); font-size: 11px; letter-spacing: 0; }
+  .cover h1 { margin: 26px 20px 0; text-align: center; font: 400 76px/0.95 Shrikhand, 'Cooper Black', serif; color: #fff; -webkit-text-stroke: 2px var(--ink); text-shadow: 5px 5px 0 var(--ink); letter-spacing: 1px; }
+  .cover .in { text-align: center; font: italic 700 20px 'Crimson Pro', serif; margin: 12px 0 0; }
+  .cover .act { text-align: center; font: 900 26px 'Libre Franklin', Arial, sans-serif; letter-spacing: 2px; text-transform: uppercase; margin: 2px 20px 0; }
+  .cover .hero { position: relative; margin: 6px auto 0; max-width: 560px; }
+  .cover .badge { position: absolute; display: grid; place-items: center; text-align: center; width: 128px; height: 128px; border-radius: 50%; border: 3px solid var(--ink); background: #fff; font: 900 13px/1.15 'Libre Franklin', Arial, sans-serif; text-transform: uppercase; transform: rotate(-12deg); box-shadow: 4px 4px 0 var(--ink); }
+  .cover .badge big { display: block; font-size: 30px; }
+  .cover .badge.l { left: -6px; top: 34px; }
+  .cover .badge.r { right: -6px; top: 150px; transform: rotate(10deg); background: var(--paper); }
+  .cover .foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; background: var(--paper); border-top: 4px solid var(--ink); padding: 16px 22px 18px; }
+  .cover .foot .title { font: 900 28px 'Libre Franklin', Arial, sans-serif; text-transform: uppercase; letter-spacing: 2px; }
+  .cover .foot small { display: block; font: 700 12px 'Libre Franklin', Arial, sans-serif; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+
+  .play { display: inline-block; font: 900 17px 'Libre Franklin', Arial, sans-serif; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; color: var(--ink); background: #fff; padding: 12px 18px; border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); white-space: nowrap; }
+  .play:hover { background: var(--ink); color: #fff; }
+  .play small { display: block; font: 400 11px 'Libre Franklin', Arial, sans-serif; letter-spacing: 1px; text-transform: none; }
+
+  /* cartoons */
+  svg.toon { display: block; width: 100%; height: auto; }
+  figure.cartoon { margin: 18px 0 22px; }
+  figure.cartoon svg { border: 3px solid var(--ink); background: #fff; }
+  figure.cartoon figcaption { margin-top: 6px; text-align: center; font-style: italic; font-size: 16px; }
+  figure.cartoon figcaption b { font-style: normal; font-family: 'Libre Franklin', Arial, sans-serif; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+  .float { float: right; width: 44%; margin: 0 0 10px 22px; }
+
+  /* contents, tables */
+  ol.toc { list-style: none; padding: 0; margin: 0; font: 700 15px 'Libre Franklin', Arial, sans-serif; }
+  ol.toc li { display: flex; gap: 8px; padding: 3px 0; }
+  ol.toc li::after { content: ''; order: 1; flex: 1; border-bottom: 2px dotted var(--ink); margin-bottom: 5px; }
+  ol.toc li span { order: 2; }
+  table.vocab { width: 100%; border-collapse: collapse; font-size: 16px; }
+  table.vocab td { border-top: 1.5px solid var(--ink); padding: 6px 6px; vertical-align: top; }
+  table.vocab td:first-child { width: 42%; }
+  .session { font: 15px/1.45 'Courier Prime', 'Courier New', monospace; background: #111; color: #d7f7d7; padding: 14px 16px; border: 3px solid var(--ink); white-space: pre-wrap; }
+  .session b { color: #fff; }
+  .legend { list-style: none; padding: 0; margin: 8px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 22px; font-size: 16px; }
+  .legend li > b:first-child { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--ink); color: #fff; font: 900 13px 'Libre Franklin', Arial, sans-serif; margin-right: 6px; }
+
+  /* cast */
+  .cast { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px 14px; }
+  .cast .card { text-align: center; font-size: 15px; line-height: 1.35; }
+  .cast .card svg { border: 3px solid var(--ink); background: var(--paper); border-radius: 50% 50% 4px 4px; }
+  .cast .card b { display: block; margin: 6px 0 2px; font: 900 14px 'Libre Franklin', Arial, sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* rules */
+  .area { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; background: var(--ink); color: var(--paper); padding: 6px 12px; margin: 22px 0 8px; font: 900 15px 'Libre Franklin', Arial, sans-serif; letter-spacing: 2px; text-transform: uppercase; }
+  .area span { color: var(--blue); white-space: nowrap; }
+  ol.rules { margin: 0; padding-left: 30px; }
+  ol.rules li { margin: 0 0 8px; }
+  ol.rules li::marker { font: 900 15px 'Libre Franklin', Arial, sans-serif; }
+  ol.rules b { font-family: 'Libre Franklin', Arial, sans-serif; font-size: 15px; }
+  .scorecard { width: 100%; border-collapse: collapse; font: 700 15px 'Libre Franklin', Arial, sans-serif; }
+  .scorecard td { border-bottom: 1.5px dotted var(--ink); padding: 5px 4px; }
+  .scorecard td:last-child { text-align: right; }
+  .scorecard tr:last-child td { border-bottom: 0; border-top: 3px solid var(--ink); font-weight: 900; }
+
+  /* back matter */
+  .catalog { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .catalog .item { border: 2px solid var(--ink); background: #fff; padding: 10px 12px; font-size: 15px; line-height: 1.4; }
+  .catalog .item b { display: block; font: 900 15px 'Libre Franklin', Arial, sans-serif; text-transform: uppercase; }
+  .catalog .item .price { float: right; font: 900 14px 'Libre Franklin', Arial, sans-serif; background: var(--blue); border: 2px solid var(--ink); padding: 0 6px; margin-left: 8px; }
+  .coupon { border: 3px dashed var(--ink); padding: 14px 18px; margin-top: 18px; background: #fff; font-size: 15px; }
+  .coupon .line { display: inline-block; min-width: 180px; border-bottom: 1.5px solid var(--ink); }
+  .fine { font-size: 13px; line-height: 1.4; }
+  .cta { text-align: center; margin: 26px 0 6px; }
+
+  @media (max-width: 700px) {
+    body { padding: 12px 6px 28px; font-size: 17px; }
+    .page { padding: 30px 20px 56px; }
+    .cover { padding: 0; }
+    .cover h1 { font-size: 46px; margin-top: 18px; }
+    .cover .act { font-size: 18px; }
+    .cover .badge { width: 88px; height: 88px; font-size: 10px; }
+    .cover .badge big { font-size: 20px; }
+    .cover .badge.r { top: 96px; }
+    .cover .foot { flex-direction: column; align-items: stretch; text-align: center; }
+    .cover .foot .title { font-size: 20px; }
+    .play { white-space: normal; font-size: 15px; }
+    h2 { font-size: 24px; }
+    .two { columns: 1; }
+    .float { float: none; width: 100%; margin: 0 0 12px; }
+    .cast { grid-template-columns: repeat(2, 1fr); }
+    .legend, .catalog { grid-template-columns: 1fr; }
+    table.vocab td:first-child { width: 48%; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <pattern id="dots" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#fff"/><circle cx="3" cy="3" r="1.25" fill="#1b1712"/></pattern>
+    <pattern id="bluedots" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#8ec9ec"/><circle cx="3" cy="3" r="1.3" fill="#2c6d97"/></pattern>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#fff"/><line x1="0" y1="0" x2="0" y2="6" stroke="#1b1712" stroke-width="1.4"/></pattern>
+  </defs>
+</svg>
+
+<!-- PAGE: COVER -->
+<div class="page cover">
+  <div class="band"><span class="ps"><i><b>PS</b></i> POLYESTER SOFTWARE</span><span>A 2-D TYPE-IN ADVENTURE</span></div>
+  <h1>Leisure Suit Jeff</h1>
+  <p class="in">in</p>
+  <p class="act">Act I: "In Search of the Lost Paycheck"</p>
+  <div class="hero">
+    <svg class="toon" data-toon="cover" role="img" aria-label="Cartoon of Jeff in his powder-blue leisure suit and gold chain, flashing finger guns in front of disco rays"></svg>
+    <div class="badge l"><div><big>16</big>Color<br>EGA<br>Edition</div></div>
+    <div class="badge r"><div>For Mature Adults<br><big>40+</big></div></div>
+  </div>
+  <div class="foot">
+    <div><div class="title">Player's Manual</div><small>IBM PC, XT, AT, Tandy 1000 &amp; 100% compatibles</small></div>
+    <a class="play" href="./">&#9654; Play It Now<small>No floppy disk required</small></a>
+  </div>
+</div>
+
+<!-- PAGE 2: WELCOME + CONTENTS -->
+<div class="page">
+  <h2>A Personal Message</h2>
+  <div class="two">
+    <p>Dear Valued Customer,</p>
+    <p>Congratulations! By purchasing <i>Leisure Suit Jeff</i>, you have joined a select group of discerning adults who believe the 1970s never really ended. They just went on a long coffee break.</p>
+    <p>Here at Polyester Software, we pour everything into our products: sweat, ambition, and a modest amount of hair tonic. You are holding the result. Please read this manual. Our lawyers asked us to say that, but we mean it too.</p>
+    <p>Stay groovy,</p>
+    <p><i>Chip Wexler</i><br><span class="fine">President &amp; Chief Polyester Officer<br>Polyester Software, Inc., Bakersfield, California</span></p>
+    <h3>Contents</h3>
+    <ol class="toc">
+      <li>The Story So Far <span>3</span></li>
+      <li>Getting Started <span>4</span></li>
+      <li>Talking To Jeff <span>5</span></li>
+      <li>Your Screen At A Glance <span>6</span></li>
+      <li>Getting Around Town <span>7</span></li>
+      <li>Who's Who <span>8</span></li>
+      <li>Jeff's Rules For Living <span>9</span></li>
+      <li>Hazards Of Modern Living <span>11</span></li>
+      <li>Music, Score &amp; Saving <span>12</span></li>
+      <li>Credits &amp; Warranty <span>13</span></li>
+      <li>Also From Polyester <span>14</span></li>
+    </ol>
+  </div>
+  <div class="folio">&mdash; 2 &mdash;</div>
+</div>
+
+<!-- PAGE 3: STORY -->
+<div class="page">
+  <h2>The Story So Far</h2>
+  <p>Meet <b>Jeff Lovett</b>: age 44, owner of one powder-blue leisure suit, one gold chain, and an optimism that no amount of evidence has ever dented.</p>
+  <p>It's 2:30 on a Friday afternoon at <b>Synergex Solutions</b>, where Jeff has spent many years doing something with reports. Tomorrow night at 8:00 is the <b>Westside High reunion</b>, and Jeff intends to show the Class of '61 exactly how well he turned out.</p>
+  <figure class="cartoon">
+    <svg class="toon" data-toon="fiero" role="img" aria-label="Cartoon of Jeff and his dead Pontiac Fiero in the Shady Pines parking lot, a smelly dumpster nearby"></svg>
+    <figcaption><b>Fig. 1</b> &nbsp;The 1984 Pontiac Fiero. Zero to sixty in "eventually."</figcaption>
+  </figure>
+  <p>There are, however, a few small problems:</p>
+  <ul>
+    <li>Jeff's Pontiac Fiero won't start. It makes a sound like a cricket with a head cold.</li>
+    <li>His suit has a chili stain on it shaped exactly like the state of Ohio.</li>
+    <li>He has <b>$12.75</b> to his name, and his boss hasn't handed over this week's paycheck.</li>
+  </ul>
+  <p>Your mission, should you choose to accept it (and you paid good money, so you should): <b>get paid, fix the car, clean the suit, and get a good night's sleep.</b> How hard can it be?</p>
+  <div class="folio">&mdash; 3 &mdash;</div>
+</div>
+
+<!-- PAGE 4: GETTING STARTED -->
+<div class="page">
+  <h2>Getting Started</h2>
+  <div class="box">
+    <span class="stamp">System Requirements</span>
+    <div class="two">
+      <p><b>Computer:</b> IBM PC, XT, AT, PS/2, Tandy 1000, or 100% compatible.</p>
+      <p><b>Memory:</b> 256K. 512K recommended to hold Jeff's ego.</p>
+      <p><b>Display:</b> EGA card and color monitor. Sixteen glorious colors, every one of them tasteful.</p>
+      <p><b>Operating system:</b> MS-DOS or PC-DOS 2.1 or higher.</p>
+      <p><b>Drives:</b> Two 5&frac14;" floppy drives or a hard disk.</p>
+      <p><b>Sound:</b> PC speaker supported. <b>AdLib Music Synthesizer Card</b> recommended for the full lounge experience.</p>
+      <p><b>Joystick:</b> Not supported. Jeff steers with his heart.</p>
+    </div>
+  </div>
+  <h3>Loading From Floppy Disk</h3>
+  <ol>
+    <li>Boot your computer with DOS. Find the <span class="mono">A&gt;</span> prompt. Admire it.</li>
+    <li>Insert <b>Disk 1</b> in drive A, label side up, and close the latch.</li>
+    <li>Type <kbd>JEFF</kbd> and press <kbd>ENTER</kbd>.</li>
+    <li>When the title screen appears, press <kbd>ENTER</kbd> to begin, or type <kbd>RESTORE</kbd> to pick up where you left off.</li>
+  </ol>
+  <h3>Hard Disk Installation</h3>
+  <p>Insert Disk 1, type <kbd>A:</kbd> <kbd>INSTALL C:</kbd> and press <kbd>ENTER</kbd>. Then type <kbd>CD \JEFF</kbd> and <kbd>JEFF</kbd>. Installation takes about four minutes, or one cup of coffee. Do not use the office coffee. (See page 11.)</p>
+  <div class="box blue">
+    <span class="stamp">Owners Of Tomorrow's Computers</span>
+    <p>Our engineers tell us that someday you won't need disks at all. You'll just point something called a "web browser" at the game and play. We think this sounds like science fiction, but just in case, click below.</p>
+    <p style="text-align:center;margin:12px 0 4px"><a class="play" href="./">&#9654; Play It Now</a></p>
+  </div>
+  <h3>A Word About Copy Protection</h3>
+  <p>Polyester Software does not use copy protection. We use guilt. Software piracy is a crime. So, frankly, is that suit.</p>
+  <div class="folio">&mdash; 4 &mdash;</div>
+</div>
+
+<!-- PAGE 5: TALKING TO JEFF -->
+<div class="page">
+  <h2>Talking To Jeff</h2>
+  <p><i>Leisure Suit Jeff</i> understands plain English. Well, plain-ish. Type what you want Jeff to do at the <kbd>&gt;</kbd> prompt and press <kbd>ENTER</kbd>. You can use capital or small letters. Little words like <i>the</i> and <i>a</i> are fine. Jeff ignores them, just like he ignores his doctor.</p>
+  <table class="vocab">
+    <tr><td><kbd>LOOK</kbd></td><td>Describes your surroundings. Do this a lot.</td></tr>
+    <tr><td><kbd>LOOK AT</kbd> <i>thing</i> &nbsp;or&nbsp; <kbd>X</kbd> <i>thing</i></td><td>Examines something up close. <kbd>READ</kbd> works on anything with writing on it.</td></tr>
+    <tr><td><kbd>TAKE</kbd> <i>thing</i></td><td>Picks it up. <kbd>GET</kbd>, <kbd>GRAB</kbd> and <kbd>PICK UP</kbd> work too.</td></tr>
+    <tr><td><kbd>TALK TO</kbd> <i>person</i></td><td>Starts a conversation. Results may vary.</td></tr>
+    <tr><td><kbd>GIVE</kbd> <i>thing</i> <kbd>TO</kbd> <i>person</i></td><td>Hands something over. Generosity is its own reward. Sometimes it's also points.</td></tr>
+    <tr><td><kbd>USE</kbd> <i>thing</i> <kbd>ON</kbd> <i>thing</i></td><td>Combines two things. <kbd>PUT</kbd> <i>thing</i> <kbd>IN</kbd> <i>thing</i> works the same way.</td></tr>
+    <tr><td><kbd>OPEN</kbd>, <kbd>SEARCH</kbd></td><td>For doors, drawers, cushions and other places things hide.</td></tr>
+    <tr><td><kbd>WEAR</kbd>, <kbd>EAT</kbd>, <kbd>DRINK</kbd>, <kbd>BUY</kbd>, <kbd>CLEAN</kbd>, <kbd>KICK</kbd>, <kbd>SMELL</kbd>, <kbd>SIT</kbd>, <kbd>SLEEP</kbd>, <kbd>FLIRT</kbd></td><td>Jeff knows lots of verbs. If you'd do it in real life, try typing it.</td></tr>
+    <tr><td><kbd>INVENTORY</kbd> or <kbd>I</kbd></td><td>Lists what you're carrying, wearing and how much cash you have.</td></tr>
+    <tr><td><kbd>HELP</kbd> &nbsp; <kbd>HINT</kbd></td><td>HELP lists commands. HINT gives a gentle nudge when you're really stuck.</td></tr>
+  </table>
+  <h3>Shortcuts</h3>
+  <p>Press the <kbd>&uarr;</kbd> and <kbd>&darr;</kbd> arrow keys to recall earlier commands. You can also click any name listed under the picture and it will be typed in for you.</p>
+  <h3>A Sample Session</h3>
+  <p>Here's an actual conversation between a player and Jeff, reproduced with Jeff's permission.</p>
+  <div class="session"><b>&gt; INVENTORY</b>
+You are carrying: wallet, car keys, Costco card (expired).
+You are wearing: powder-blue leisure suit (stained).
+Cash: $12.75.
+<b>&gt; SMELL</b>
+You smell polyester. That would be you.
+<b>&gt; GO TO GYM</b>
+Jeff has heard of it, but has no idea how to get there yet. Type MAP to see the places you know.
+<b>&gt; XYZZY</b>
+A hollow voice says "Wrong game, pal."</div>
+  <div class="folio">&mdash; 5 &mdash;</div>
+</div>
+
+<!-- PAGE 6: SCREEN -->
+<div class="page">
+  <h2>Your Screen At A Glance</h2>
+  <figure class="cartoon">
+    <svg class="toon" data-toon="monitor" role="img" aria-label="Cartoon of a computer monitor with five numbered parts of the game screen"></svg>
+  </figure>
+  <ul class="legend">
+    <li><b>1</b>The <b>status line</b>: your score out of 130, plus the day, the time and your cash.</li>
+    <li><b>2</b>The <b>picture</b>: where Jeff is, painted in sixteen genuine EGA colors. It changes as you change things.</li>
+    <li><b>3</b>The <b>panel</b>: the name of the place, everything worth a closer look under <b>You see</b>, the <b>Exits</b> you can walk to, and places across town you can <b>Travel</b> to.</li>
+    <li><b>4</b>The <b>story</b>: what Jeff does, what people say, and how many points you just earned.</li>
+    <li><b>5</b>The <b>prompt</b>: type here. The &#9834; button turns the music and sound on or off.</li>
+  </ul>
+  <div class="box">
+    <span class="stamp">Pro Tip</span>
+    <p>Everything listed under <b>You see</b> can be looked at, and most of it can be used for something. Our playtesters found that the players who LOOKed at everything finished with the most points and the fewest deaths. The playtesters who didn't are no longer with us. (They moved to Phoenix.)</p>
+  </div>
+  <div class="folio">&mdash; 6 &mdash;</div>
+</div>
+
+<!-- PAGE 7: GETTING AROUND -->
+<div class="page">
+  <h2>Getting Around Town</h2>
+  <p>Inside a building, type <kbd>GO</kbd> and the name of an exit, such as <kbd>GO LOBBY</kbd>. But a man with places to be doesn't need a hallway. From anywhere, type <kbd>GO TO</kbd> and a destination: <kbd>GO TO HOME</kbd>, <kbd>GO TO WORK</kbd>, or <kbd>GO TO COSTCO</kbd>. Type <kbd>MAP</kbd> to list every place Jeff knows.</p>
+  <figure class="cartoon">
+    <svg class="toon" data-toon="map" role="img" aria-label="Cartoon map of town showing Synergex Solutions, Shady Pines Apartments, the Costco warehouse and the number 42 bus"></svg>
+    <figcaption><b>Fig. 2</b> &nbsp;Jeff's town. Not to scale. Not to anything, really.</figcaption>
+  </figure>
+  <div class="two">
+    <h3>The #42 Bus</h3>
+    <p><kbd>TAKE BUS TO</kbd> <i>place</i> costs <b>$2.00</b> a ride, exact change. You'll meet interesting people. Many of them have soup.</p>
+    <h3>The Fiero</h3>
+    <p>Once the Fiero runs again, <kbd>DRIVE TO</kbd> <i>place</i> is free, fast, and enormously attractive to women (Jeff's opinion).</p>
+    <h3>The Clock</h3>
+    <p>Every move takes a little time, and travel takes more. The clock on your status line is real. Stores keep real hours. Type <kbd>TIME</kbd> to check.</p>
+    <h3>Places Jeff Knows</h3>
+    <p><b>Synergex Solutions</b> (work): lobby, cubicles, break room, and Mr. Brumley's office.<br>
+    <b>Shady Pines Apartments</b> (home): the parking lot, Jeff's bachelor pad and his bathroom.<br>
+    <b>Costco</b>: the parking lot, entrance, aisles, tire center and food court.</p>
+    <h3>Coming Soon</h3>
+    <p>Lefty's Lounge, Iron Paradise Gym, Second Chance Thrift, Disco Inferno and the Westside High reunion itself all await in future acts. Jeff can't get there yet. He's not ready. Look at him.</p>
+  </div>
+  <div class="folio">&mdash; 7 &mdash;</div>
+</div>
+
+<!-- PAGE 8: CAST -->
+<div class="page">
+  <h2>Who's Who</h2>
+  <div class="cast">
+    <div class="card"><svg class="toon" data-toon="p-jeff" role="img" aria-label="Portrait of Jeff"></svg><b>Jeff Lovett</b>You. Forty-four. Single. A great listener, when he's the one talking.</div>
+    <div class="card"><svg class="toon" data-toon="p-brumley" role="img" aria-label="Portrait of Bill Brumley"></svg><b>Bill Brumley</b>The boss. Suspenders, bow tie, and a "yeahhh" that makes your soul pack a suitcase. Very particular about paperwork.</div>
+    <div class="card"><svg class="toon" data-toon="p-merv" role="img" aria-label="Portrait of Merv"></svg><b>Merv</b>Jeff's cubicle neighbor for eleven years. Loves exactly one thing in this world, and it's an office supply.</div>
+    <div class="card"><svg class="toon" data-toon="p-peggy" role="img" aria-label="Portrait of Peggy"></svg><b>Peggy</b>Front desk, 22 years. Her voice could put a bear on hold. Has.</div>
+    <div class="card"><svg class="toon" data-toon="p-todds" role="img" aria-label="Portrait of the two Todds"></svg><b>The Todds</b>Two efficiency consultants in matching fleece vests. Both named Todd. Here to "right-size" things.</div>
+    <div class="card"><svg class="toon" data-toon="p-gus" role="img" aria-label="Portrait of Gus"></svg><b>Gus</b>The warehouse greeter. 87 years young, firm handshake. Nobody gets past Gus without the proper credentials.</div>
+    <div class="card"><svg class="toon" data-toon="p-marge" role="img" aria-label="Portrait of Marge"></svg><b>Marge</b>The sample lady. Hairnet, toothpicks, a heart of gold, and a deep professional interest in your stains.</div>
+    <div class="card"><svg class="toon" data-toon="p-rusty" role="img" aria-label="Portrait of Rusty"></svg><b>Rusty</b>Runs the tire center. Knows batteries. Might not be named Rusty.</div>
+  </div>
+  <p style="margin-top:18px">Also appearing: <b>Deb</b>, who is having a birthday; <b>Tyler</b> at the membership desk, who would like to tell you about executive membership (please don't let him); and <b>Karen</b>, who you will never see, but who sees everything.</p>
+  <div class="folio">&mdash; 8 &mdash;</div>
+</div>
+
+<!-- PAGE 9-10: RULES -->
+<div class="page" id="rules">
+  <h2>Jeff's Rules For Living</h2>
+  <p>There are <b>130 points</b> in Act I. You can finish with fewer, but your mother will be disappointed. Jeff has kindly written down his personal philosophy, which will lead you to every one of them without spoiling the fun. (For the complete, spoiler-filled solution, see the official strategy guide sold separately.)</p>
+  <table class="scorecard" id="scorecard">
+    <tr><td>Synergex Solutions</td><td>43 points</td></tr>
+    <tr><td>Shady Pines Apartments</td><td>17 points</td></tr>
+    <tr><td>Costco</td><td>40 points</td></tr>
+    <tr><td>The Victory Lap</td><td>30 points</td></tr>
+    <tr><td>Total</td><td>130 points</td></tr>
+  </table>
+
+  <div class="area" data-pts="43">At The Office <span>43 pts</span></div>
+  <ol class="rules">
+    <li data-covers="read_memo"><b>Read your mail.</b> Management announces important policy changes in memos nobody reads. Be the one person who does.</li>
+    <li data-covers="take_report"><b>Paperwork doesn't walk.</b> A report that stays on your desk can't be turned in anywhere else. Carry it with you.</li>
+    <li data-covers="print_cover load_printer get_cover"><b>Computers print. Printers complain.</b> When a machine gives you an error message, work out what it's hungry for and feed it. Office supplies have a way of ending up holding the furniture together.</li>
+    <li data-covers="kick_printer"><b>Percussive maintenance</b> is a time-honored office tradition. It never fixes anything. It is still worth doing.</li>
+    <li data-covers="take_cake"><b>Somebody's birthday is everybody's opportunity.</b> Leftover cake belongs to whoever gets there first. (Sorry, Deb.)</li>
+    <li data-covers="wear_flair"><b>Show some flair.</b> Corporate culture demands it. Picking it up is not the same as putting it on.</li>
+    <li data-covers="merv_stapler"><b>Everybody has a price.</b> A man won't part with his favorite possession for nothing, but a man who hasn't had a corner piece in eleven years can be reasoned with.</li>
+    <li data-covers="staple_report"><b>A report isn't finished until it's in one piece.</b> Brumley wants his paperwork complete, assembled, and wearing the <i>new</i> cover.</li>
+    <li data-covers="return_stapler"><b>Return what you borrow.</b> It's good manners, and good karma is worth points.</li>
+    <li data-covers="paid"><b>Finished work goes to the corner office.</b> That's also where the paychecks live.</li>
+    <li data-covers="talk_peggy talk_todds"><b>Be friendly, even when it hurts.</b> Say hello to the front desk on your way out. Yes, also to the consultants.</li>
+    <li data-covers="solitaire"><b>Productivity takes many forms.</b> Your desk computer came with more than spreadsheets. A man who has never won at cards on company time has never truly worked.</li>
+  </ol>
+
+  <div class="area" data-pts="17">At Home <span>17 pts</span></div>
+  <ol class="rules" start="13">
+    <li data-covers="coupon"><b>One man's trash is another man's treasure.</b> The dumpster behind Shady Pines has been feeding raccoons for years. Read the fine print on anything you find in there. Some deals expire today.</li>
+    <li data-covers="open_hood"><b>Know your enemy.</b> You can't fix a car you haven't looked inside.</li>
+    <li data-covers="messages"><b>That blinking light isn't a disco ball.</b> Somebody called. Several somebodies. One of them knows something about your wallet that you don't.</li>
+    <li data-covers="couch_quarters"><b>A couch is a piggy bank with cushions.</b> Every quarter counts this weekend.</li>
+    <li data-covers="look_mirror"><b>Know thyself.</b> Before a big night, take a long, honest look at what you're working with.</li>
+    <li data-covers="cologne comb_hair"><b>A gentleman's medicine cabinet</b> holds the two secret weapons of 1970s romance. Apply both as directed. On the <i>outside</i> of the body.</li>
+  </ol>
+  <div class="folio">&mdash; 9 &mdash;</div>
+</div>
+
+<div class="page">
+  <div class="area" data-pts="40">At The Warehouse <span>40 pts</span></div>
+  <ol class="rules" start="19">
+    <li data-covers="take_cart"><b>Lift with your wheels, not your back.</b> Car parts are heavy, and nobody sells you one you can't carry away. Grab your transportation <i>before</i> you go inside.</li>
+    <li data-covers="renew"><b>Membership has its privileges, and its expiration dates.</b> Your answering machine may have mentioned something. Bring money.</li>
+    <li data-covers="greeter"><b>Always say hello to the greeter.</b> He has been standing there since the Carter administration. He's earned a chat.</li>
+    <li data-covers="stare_tvs"><b>Bond with your fellow man.</b> Every warehouse has a wall of big-screen TVs and a row of strangers in front of it, arms crossed, nodding. Be one of them.</li>
+    <li data-covers="eat_sample"><b>Free samples are free.</b> Chat with the nice lady in the hairnet, then actually try the product.</li>
+    <li data-covers="stain_pen clean_suit"><b>Sample ladies give away more than food.</b> A man with a stain shaped like a Midwestern state should mention it to someone who sells the cure, and then use it.</li>
+    <li data-covers="buy_battery use_coupon"><b>Batteries live where the tires live.</b> The tire guy takes coupons, even greasy ones. Hand yours over and save.</li>
+    <li data-covers="hot_dog"><b>The $1.50 hot dog is sacred.</b> Buy one, and eat it with the care of a man wearing his only good suit.</li>
+    <li><b>Mind the clock.</b> The warehouse closes at <b>8:30 PM</b> sharp. Plan your errands accordingly.</li>
+  </ol>
+  <figure class="cartoon">
+    <svg class="toon" data-toon="warehouse" role="img" aria-label="Cartoon of a tiny Jeff pushing a cart beneath towering warehouse shelves, with a giant mayonnaise jar and a free sample booth"></svg>
+    <figcaption><b>Fig. 3</b> &nbsp;Family size. For a family of forty.</figcaption>
+  </figure>
+
+  <div class="area" data-pts="30">The Victory Lap <span>30 pts</span></div>
+  <ol class="rules" start="28">
+    <li data-covers="return_cart"><b>Civilization depends on returned carts.</b> Leave the warehouse with a cart in hand and Jeff will put it back like a decent human being.</li>
+    <li data-covers="install_battery"><b>Batteries don't install themselves.</b> Red to red, black to black.</li>
+    <li data-covers="first_drive"><b>Take her out for a spin.</b> A man who just fixed his own car deserves a victory lap, and gas is cheap.</li>
+    <li data-covers="act_end"><b>Sleep is earned.</b> Paid, fixed and spotless? The waterbed awaits. Not one minute before.</li>
+  </ol>
+  <div class="box blue">
+    <span class="stamp">Money Talks</span>
+    <p>Jeff starts the weekend with $12.75. Between a paycheck and whatever the furniture coughs up, a careful man can afford everything on his list with change to spare. A careless man rides the bus to his own reunion.</p>
+  </div>
+  <div class="folio">&mdash; 10 &mdash;</div>
+</div>
+
+<!-- PAGE 11: HAZARDS -->
+<div class="page">
+  <h2>Hazards Of Modern Living</h2>
+  <figure class="cartoon float">
+    <svg class="toon" data-toon="fridge" role="img" aria-label="Cartoon of an office fridge with a yogurt labeled Karen's, I counted, and an ancient coffee pot"></svg>
+    <figcaption><b>Fig. 4</b> &nbsp;The break room. Proceed with caution.</figcaption>
+  </figure>
+  <p>Like all fine adventure games, <i>Leisure Suit Jeff</i> has many exciting ways for Jeff to die. Polyester Software accepts no responsibility for any of them. A few friendly reminders:</p>
+  <ul>
+    <li><b>The office fridge</b> holds other people's food. Some of those people keep count.</li>
+    <li><b>Never drink coffee</b> that is older than your car.</li>
+    <li><b>Cologne goes on the outside.</b> Even the economy-size bottle. <i>Especially</i> the economy-size bottle.</li>
+    <li><b>Condiments are not a meal</b>, no matter how big the jar.</li>
+    <li><b>Stores close.</b> A man who hasn't bought his car battery by closing time is a man taking the bus to his reunion.</li>
+  </ul>
+  <div class="box" style="clear:both">
+    <span class="stamp">Save Early, Save Often</span>
+    <p>Type <kbd>SAVE</kbd> to save your game, or <kbd>SAVE</kbd> and a name, like <kbd>SAVE BEFORE LUNCH</kbd>. Type <kbd>RESTORE</kbd> with the same name to go back. Your saves are kept on this computer.</p>
+    <p>Did Jeff just die? Type <kbd>UNDO</kbd> to take back your last move. If only real life worked this way. <kbd>RESTART</kbd> starts the whole weekend over.</p>
+  </div>
+  <div class="folio">&mdash; 11 &mdash;</div>
+</div>
+
+<!-- PAGE 12: MUSIC, SCORE, SAVING -->
+<div class="page">
+  <h2>Music, Score &amp; Saving</h2>
+  <div class="two">
+    <h3>Music &amp; Sound</h3>
+    <p>Every location has its own theme, played on the AdLib FM sound chip, with jingles for points and a dirge for when Jeff dies. If people in the next cubicle are listening:</p>
+    <p><kbd>SOUND OFF</kbd> / <kbd>SOUND ON</kbd> turns everything off or on.<br>
+    <kbd>MUSIC OFF</kbd> / <kbd>SFX OFF</kbd> turn off only the music or only the sound effects.<br>
+    <kbd>VOLUME 5</kbd> sets the volume, from 0 to 10.<br>
+    Or click the &#9834; button next to the prompt.</p>
+    <h3>Keeping Score</h3>
+    <p>Type <kbd>SCORE</kbd> to see your points and how many moves you've made. Points come from doing the right thing, the nice thing, and every so often the dumb-but-satisfying thing.</p>
+    <h3>Keeping Time</h3>
+    <p>Type <kbd>TIME</kbd> for the time. The weekend starts at 2:30 PM on Friday. Act I ends when Jeff goes to bed with his chores done.</p>
+    <h3>Stuck?</h3>
+    <p>Reread pages 9 and 10. LOOK at everything again. Talk to everyone again. Still stuck? Type <kbd>HINT</kbd>. Jeff will tell you what he'd do next.</p>
+  </div>
+  <div class="folio">&mdash; 12 &mdash;</div>
+</div>
+
+<!-- PAGE 13: CREDITS & WARRANTY -->
+<div class="page">
+  <h2>Credits</h2>
+  <div class="two">
+    <p><b>Executive Producer</b><br>Chip Wexler</p>
+    <p><b>Game Design &amp; Parser</b><br>A man in a windowless room who asked not to be named</p>
+    <p><b>EGA Artwork</b><br>All sixteen colors, working in shifts</p>
+    <p><b>Music</b><br>The Polyester Nights Orchestra (AdLib division)</p>
+    <p><b>Quality Assurance</b><br>Merv's cousin, two weekends</p>
+    <p><b>Manual</b><br>Written during a meeting about meetings</p>
+    <p><b>Wardrobe</b><br>Sears, 1976, clearance rack</p>
+    <p><b>Special Thanks</b><br>Our moms, the Bakersfield Costco, and the guy who invented the waterbed</p>
+  </div>
+  <h3>Limited Warranty</h3>
+  <p class="fine">Polyester Software, Inc. warrants the diskettes on which this program is recorded to be free from defects in materials and workmanship for ninety (90) days from the date of purchase. Polyester Software makes no warranty of any kind regarding Jeff. Jeff is sold AS IS, including but not limited to the suit, the hair, the chain, and the attitude. Some states do not allow the exclusion of implied warranties, in which case, honestly, good luck to you.</p>
+  <h3>Technical Support</h3>
+  <p class="fine">If your disk will not load, first make sure it is in the drive. Then make sure it is in the right drive. Then make sure the computer is plugged in. Then call our technical support line during business hours, Monday through Thursday, 10 AM to 11:30 AM Pacific. Friday afternoons are reserved for solitaire.</p>
+  <p class="fine"><i>Leisure Suit Jeff</i> is an original parody game, not affiliated with Sierra On-Line or Leisure Suit Larry. Polyester Software, its staff and its products are fictional. Costco and other names mentioned belong to their owners and appear here as affectionate parody. No leisure suits were harmed in the making of this game.</p>
+  <div class="folio">&mdash; 13 &mdash;</div>
+</div>
+
+<!-- PAGE 14: CATALOG -->
+<div class="page">
+  <h2>Also From Polyester Software</h2>
+  <div class="catalog">
+    <div class="item"><span class="price">Fall '88</span><b>Leisure Suit Jeff, Act II</b><i>"Saturday Night Jeff-ver."</i> Jeff needs a date for the reunion, a little dignity, and a bag of ice. Not necessarily in that order.</div>
+    <div class="item"><span class="price">$39.95</span><b>Typing Tutor For Middle Managers</b>Learn to type "per my last memo" at 90 words per minute. Includes the "Yeahhh..." macro key.</div>
+    <div class="item"><span class="price">$49.95</span><b>Fiero Flight Simulator</b>Experience what it's like to sit very low to the ground and not move. Requires math coprocessor and patience.</div>
+    <div class="item"><span class="price">$29.95</span><b>Memo Maker Deluxe</b>Generates four hundred memos a day so your boss doesn't have to. Prints on any printer that has paper.</div>
+    <div class="item"><span class="price">$24.95</span><b>VCR Clock Setter</b>At last! Software that makes it stop blinking 12:00. <i>Note: does not work.</i></div>
+    <div class="item"><span class="price">$9.95</span><b>The Official Jeff Hint Book</b>Every answer, printed in our patented invisible ink, so you can't cheat by accident. Magic marker included.</div>
+  </div>
+  <div class="coupon">
+    <b>ORDER FORM</b> &mdash; Mail to: Polyester Software, P.O. Box 1976, Bakersfield, CA 93301<br>
+    Please rush me: &nbsp;<span class="line">&nbsp;</span><br>
+    Name: <span class="line">&nbsp;</span> &nbsp;Computer: &nbsp;&#9744; IBM PC &nbsp;&#9744; Tandy &nbsp;&#9744; Other<br>
+    Add $2.00 shipping &amp; handling. California residents add sales tax. Allow 6&ndash;8 weeks for delivery, or 6&ndash;8 months for Act II.<br>
+    <span class="fine">Can't wait? Call the <b>Jeff Hint Line: 1-900-555-SUIT</b>. $2.00 the first minute, 95&cent; each additional minute. Under 18? Ask your parents. Over 40? Ask Jeff.</span>
+  </div>
+  <div class="cta">
+    <a class="play" href="./">&#9654; Play Leisure Suit Jeff Now</a>
+  </div>
+  <div class="folio">&mdash; 14 &mdash;</div>
+</div>
+
+<script>
+// Two-color (ink + powder blue) cartoons, drawn as SVG in the style of a 1980s software manual.
+(function () {
+  'use strict';
+  var INK = '#1b1712', BLUE = '#8ec9ec', DBLUE = '#2c6d97', W = '#fff';
+  var DOTS = 'url(#dots)', BDOTS = 'url(#bluedots)', HATCH = 'url(#hatch)';
+
+  function p(d, fill, w, extra) {
+    return '<path d="' + d + '" fill="' + (fill || 'none') + '" stroke="' + INK + '" stroke-width="' + (w == null ? 2.6 : w) +
+      '" stroke-linecap="round" stroke-linejoin="round"' + (extra || '') + '/>';
+  }
+  function c(x, y, r, fill, w) { return '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="' + (fill || 'none') + '" stroke="' + INK + '" stroke-width="' + (w == null ? 2.6 : w) + '"/>'; }
+  function el(x, y, rx, ry, fill, w) { return '<ellipse cx="' + x + '" cy="' + y + '" rx="' + rx + '" ry="' + ry + '" fill="' + (fill || 'none') + '" stroke="' + INK + '" stroke-width="' + (w == null ? 2.6 : w) + '"/>'; }
+  function rect(x, y, w, h, fill, sw, rx) { return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="' + (rx || 0) + '" fill="' + (fill || 'none') + '" stroke="' + INK + '" stroke-width="' + (sw == null ? 2.6 : sw) + '"/>'; }
+  function dot(x, y, r) { return '<circle cx="' + x + '" cy="' + y + '" r="' + (r || 2.4) + '" fill="' + INK + '"/>'; }
+  function mir(s) { return '<g transform="scale(-1 1)">' + s + '</g>'; }
+  function at(x, y, s, body, flip) { return '<g transform="translate(' + x + ' ' + y + ') scale(' + (flip ? -s : s) + ' ' + s + ')">' + body + '</g>'; }
+  function txt(x, y, str, size, opt) {
+    opt = opt || {};
+    return '<text x="' + x + '" y="' + y + '" font-family="' + (opt.font || "'Libre Franklin',Arial,sans-serif") + '" font-weight="' + (opt.weight || 900) +
+      '" font-size="' + (size || 14) + '" text-anchor="' + (opt.anchor || 'middle') + '" fill="' + (opt.fill || INK) + '"' +
+      (opt.italic ? ' font-style="italic"' : '') + (opt.rotate ? ' transform="rotate(' + opt.rotate + ' ' + x + ' ' + y + ')"' : '') + '>' + str + '</text>';
+  }
+
+  // ---------------------------------------------------------------- heads
+  var FACES = {
+    egg: 'M-26,-14 C-28,-46 28,-46 26,-14 C28,10 20,36 0,40 C-20,36 -28,10 -26,-14Z',
+    jowl: 'M-25,-16 C-25,-46 25,-46 25,-16 C33,6 30,32 0,38 C-30,32 -33,6 -25,-16Z',
+    long: 'M-22,-16 C-24,-48 24,-48 22,-16 C24,14 14,44 0,45 C-14,44 -24,14 -22,-16Z',
+    round: 'M-28,-8 C-30,-44 30,-44 28,-8 C28,22 16,38 0,38 C-16,38 -28,22 -28,-8Z',
+  };
+  var BROWS = { up: 'M-15,-19 Q-9,-24 -3,-20', flat: 'M-15,-19 L-3,-19', worried: 'M-15,-17 L-4,-22', angry: 'M-15,-22 L-4,-17' };
+  var NOSES = {
+    small: 'M-1,-3 C-3,5 -6,8 -3,11 C-1,12 2,12 3,10',
+    bulb: 'M-2,-4 C-6,6 -12,9 -8,14 C-5,18 5,17 7,12',
+    big: 'M-3,-4 C-8,4 -16,8 -12,16 C-9,21 7,21 10,14 C11,10 7,8 4,8',
+  };
+  var MOUTHS = {
+    grin: p('M-14,20 Q0,25 14,20 Q12,35 0,36 Q-12,35 -14,20Z', W) + p('M-12,25 Q0,28 12,25', 'none', 1.5),
+    smile: p('M-10,23 Q0,31 10,23'),
+    flat: p('M-8,27 L8,27'),
+    frown: p('M-9,29 Q0,22 9,29'),
+    smirk: p('M-9,26 Q3,29 11,21'),
+    lips: p('M-10,24 Q-5,20 0,23 Q5,20 10,24 Q0,33 -10,24Z', INK, 1.5),
+    oh: el(0, 27, 4.5, 5.5, INK, 1.5),
+  };
+  var HAIR = {
+    swoop: p('M-27,-12 C-36,-46 -4,-66 24,-50 C36,-42 34,-26 27,-12 C24,-28 10,-34 -6,-30 C-16,-28 -23,-22 -27,-12Z', INK, 2) +
+      '<path d="M-12,-46 C-2,-55 12,-53 20,-44" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"/>' +
+      p('M-26,-16 L-26,6 L-20,9 L-20,-14Z', INK, 1.4) + mir(p('M-26,-16 L-26,6 L-20,9 L-20,-14Z', INK, 1.4)),
+    parted: p('M-24,-12 C-30,-48 26,-54 24,-12 C20,-30 8,-38 -4,-34 C-8,-38 -18,-32 -24,-12Z', INK, 2),
+    receding: p('M-25,-2 C-30,-20 -26,-30 -17,-35 C-20,-24 -20,-14 -23,-2Z', INK, 1.6) + mir(p('M-25,-2 C-30,-20 -26,-30 -17,-35 C-20,-24 -20,-14 -23,-2Z', INK, 1.6)) +
+      p('M-8,-41 Q0,-47 8,-41', 'none', 1.6) + p('M-4,-42 Q4,-49 12,-40', 'none', 1.6),
+    thin: p('M-22,-24 C-12,-40 8,-42 21,-28', 'none', 1.8) + p('M-21,-18 C-10,-34 10,-36 22,-20', 'none', 1.8) + p('M-20,-30 C-8,-44 10,-44 18,-36', 'none', 1.8),
+    tufts: p('M-27,-4 C-37,-6 -39,-16 -31,-18 C-37,-26 -29,-33 -22,-27', W, 2.2) + mir(p('M-27,-4 C-37,-6 -39,-16 -31,-18 C-37,-26 -29,-33 -22,-27', W, 2.2)) +
+      p('M-12,-35 Q-6,-39 0,-37', 'none', 1.6) + p('M-18,-24 Q0,-28 18,-24', 'none', 1.3),
+    cap: p('M-27,-14 C-30,-54 30,-54 27,-14Z', BLUE) + dot(0, -45, 2.6) + p('M-31,-14 C-20,-4 20,-4 31,-14 C20,-21 -20,-21 -31,-14Z', BLUE),
+  };
+  function curls() {
+    var s = '';
+    for (var a = 192; a <= 348; a += 26) {
+      var r = a * Math.PI / 180;
+      s += c((31 * Math.cos(r)).toFixed(1), (-12 + 31 * Math.sin(r)).toFixed(1), 8.5, W, 2);
+    }
+    return s + '<path d="M-33,-16 C-30,-56 30,-56 33,-16" fill="none" stroke="' + INK + '" stroke-width="1.4" stroke-dasharray="1.5 4"/>';
+  }
+  function beehiveBack() {
+    return p('M-27,-10 C-42,-50 -32,-100 0,-102 C32,-100 42,-50 27,-10 C18,-34 -18,-34 -27,-10Z', DOTS) +
+      p('M-16,-62 C-8,-84 16,-80 12,-60', 'none', 2) + p('M-22,-42 C-10,-58 16,-58 22,-40', 'none', 2);
+  }
+
+  function head(o) {
+    o = o || {};
+    var s = o.back || '';
+    var ear = o.bigEars ? 'M-25,-10 C-44,-22 -46,16 -25,10' : 'M-25,-6 C-37,-12 -38,10 -25,8';
+    s += p(ear, W) + mir(p(ear, W)) + p(FACES[o.face || 'egg'], W);
+    if (o.blush) s += '<circle cx="-17" cy="13" r="5.5" fill="' + BLUE + '"/><circle cx="17" cy="13" r="5.5" fill="' + BLUE + '"/>';
+    var lx = o.look || 0;
+    if (o.eyes === 'closed') s += p('M-15,-7 Q-9,-2 -3,-7') + p('M3,-7 Q9,-2 15,-7');
+    else {
+      var eye = el(-9, -8, 5.5, 7, W, 2);
+      s += eye + mir(eye) + dot(-9 + lx, -6.5) + dot(9 + lx, -6.5);
+      if (o.eyes === 'tired') s += p('M-14.6,-7 C-14.6,-17 -3.4,-17 -3.4,-7Z', W, 2) + mir(p('M-14.6,-7 C-14.6,-17 -3.4,-17 -3.4,-7Z', W, 2));
+      if (o.lashes) s += p('M-14,-13 L-17,-16 M-11,-15 L-12,-19 M-7,-15 L-6,-19', 'none', 1.6) + mir(p('M-14,-13 L-17,-16 M-11,-15 L-12,-19 M-7,-15 L-6,-19', 'none', 1.6));
+    }
+    if (o.brows) s += p(BROWS[o.brows], 'none', o.bushy ? 4.5 : 3) + mir(p(BROWS[o.brows], 'none', o.bushy ? 4.5 : 3));
+    if (o.glasses === 'thin') s += c(-9, -8, 8.5, 'none', 2) + c(9, -8, 8.5, 'none', 2) + p('M-17.5,-9 L-25,-11', 'none', 2) + p('M17.5,-9 L25,-11', 'none', 2);
+    if (o.glasses === 'thick') s += c(-10, -8, 11, 'none', 4) + c(10, -8, 11, 'none', 4) + p('M-15,-14 L-11,-17 M5,-14 L9,-17', 'none', 1.4);
+    s += p(NOSES[o.nose || 'bulb'], 'none', 2.4);
+    if (o.mustache) s += p('M-16,21 C-11,12 -3,13 0,17 C3,13 11,12 16,21 C9,19 4,20 0,19 C-4,20 -9,19 -16,21Z', INK, 1.5);
+    s += MOUTHS[o.mouth || 'smile'];
+    if (o.hair) s += o.hair;
+    if (o.front) s += o.front;
+    return s;
+  }
+
+  // ---------------------------------------------------------------- busts
+  var SH = 'M-56,112 C-54,72 -36,58 0,56 C36,58 54,72 56,112Z';
+  var NECK = p('M-10,32 L-11,58 L11,58 L10,32', W);
+  var BUSTS = {
+    jeff: function () {
+      var lapel = p('M-14,58 L-40,64 L-30,84 L-6,108 L0,90Z', BLUE, 2.2), wing = p('M-13,56 L-30,74 L-6,66Z', W, 2);
+      return p(SH, BLUE) + NECK + p('M-13,56 L0,88 L13,56Z', W) + p('M-5,70 q2,-3 4,0 q2,3 4,0 M-3,78 q2,-3 4,0 q2,3 4,0', 'none', 1.3) +
+        p('M-9,58 Q0,80 9,58', 'none', 2) + c(0, 80, 4, W, 2) + lapel + mir(lapel) + wing + mir(wing) +
+        p('M24,82 L35,81 L36,90 L31,98 L24,95Z', HATCH, 1.4);
+    },
+    brumley: function () {
+      var strap = p('M-30,64 L-24,112', 'none', 5), bow = p('M-14,58 L0,64 L-14,71Z', BLUE, 2);
+      return p(SH, W) + strap + mir(strap) + NECK + p('M-12,56 L0,64 L12,56', 'none', 2) + bow + mir(bow) + c(0, 64, 3.5, INK, 1);
+    },
+    merv: function () {
+      return p(SH, W) + NECK + p('M-12,56 L0,62 L12,56', 'none', 2) + p('M-3,62 L3,62 L5,100 L0,106 L-5,100Z', INK, 1.5) +
+        p('M20,76 L20,64 M25,76 L25,62 M30,76 L30,67', 'none', 3) + p('M16,76 L34,76 L34,94 L16,94Z', W, 2);
+    },
+    peggy: function () {
+      var s = p(SH, BLUE) + NECK + p('M-16,57 Q0,76 16,57', W);
+      for (var i = -4; i <= 4; i++) s += c(i * 3.6, 66 - i * i * 0.45, 2.2, W, 1.2);
+      return s;
+    },
+    todd: function () {
+      var vest = p('M-56,112 C-54,72 -36,58 -13,57 L-6,112Z', DOTS, 2.4);
+      return p(SH, W) + NECK + vest + mir(vest) + p('M-12,56 L0,66 L12,56', 'none', 2);
+    },
+    gus: function () {
+      var vest = p('M-56,112 C-54,72 -36,58 -14,57 L-4,112Z', BLUE, 2.4);
+      return p(SH, W) + NECK + vest + mir(vest) + p('M-12,56 L0,64 L12,56', 'none', 2) + rect(12, 74, 28, 13, W, 1.6) + txt(26, 84, 'GUS', 9);
+    },
+    marge: function () {
+      return p(SH, BLUE) + NECK + p('M-12,56 L0,66 L12,56', W, 2) + p('M-22,66 L22,66 L26,112 L-26,112Z', W) +
+        p('M-22,66 L-14,57 M22,66 L14,57', 'none', 2) + p('M-12,86 L12,86 L12,100 L-12,100Z', 'none', 1.6);
+    },
+    rusty: function () {
+      var col = p('M-12,56 L-24,70 L-4,64Z', BLUE, 2);
+      return p(SH, BLUE) + NECK + col + mir(col) + p('M0,64 L0,112', 'none', 2) + el(-28, 86, 13, 8, W, 1.6) + txt(-28, 89, 'RUSTY', 7) +
+        p('M18,92 C24,86 32,90 30,96 C28,102 20,100 18,92Z', HATCH, 1.2);
+    },
+  };
+  var PEOPLE = {
+    jeff: { face: 'egg', hair: HAIR.swoop, brows: 'up', look: 1, nose: 'big', mouth: 'grin' },
+    brumley: { face: 'jowl', hair: HAIR.receding, glasses: 'thin', eyes: 'tired', brows: 'flat', nose: 'bulb', mouth: 'flat' },
+    merv: { face: 'long', hair: HAIR.thin, glasses: 'thick', eyes: 'tired', brows: 'worried', nose: 'bulb', mouth: 'frown', look: -1 },
+    peggy: { face: 'egg', back: beehiveBack(), front: p('M-26,-14 C-24,-40 24,-40 26,-14 C14,-30 -14,-30 -26,-14Z', DOTS, 2) +
+      p('M-31,2 C-36,-56 36,-56 31,2', 'none', 3) + el(-30, 2, 5, 8, INK, 1) + p('M-30,8 C-28,24 -18,30 -8,30', 'none', 2.2) + dot(-7, 30, 3) + c(26, 14, 3, W, 1.6),
+      brows: 'up', lashes: true, nose: 'small', mouth: 'lips', blush: true },
+    todd: { face: 'egg', hair: HAIR.parted, brows: 'up', nose: 'small', mouth: 'grin' },
+    gus: { face: 'round', bigEars: true, hair: HAIR.tufts, brows: 'flat', bushy: true, nose: 'big', mouth: 'smile', blush: true },
+    marge: { face: 'round', hair: curls(), brows: 'up', lashes: true, nose: 'small', mouth: 'grin', blush: true, front: c(-27, 14, 3, W, 1.6) + c(27, 14, 3, W, 1.6) },
+    rusty: { face: 'jowl', hair: HAIR.cap, brows: 'angry', bushy: true, nose: 'big', mustache: true, mouth: 'flat' },
+  };
+  function bust(who) { return BUSTS[who]() + at(0, 14, 1, head(PEOPLE[who])); }
+
+  // ---------------------------------------------------------------- full-figure Jeff (head at 0,0; feet at y=316)
+  function jeffFigure() {
+    var leg = p('M-46,186 L-38,248 L-60,300 L-8,300 L-4,248 L-1,190Z', BLUE), shoe = p('M-64,300 L-6,300 L-4,316 L-68,316 C-70,308 -68,302 -64,300Z', INK);
+    var lapel = p('M-14,56 L-42,66 L-30,100 L-4,128 L0,104Z', BLUE, 2.4), wing = p('M-13,54 L-34,82 L-6,68Z', W, 2.2);
+    return leg + mir(leg) + shoe + mir(shoe) + p('M-24,196 L-32,296 M24,196 L32,296', 'none', 1.4) +
+      p('M-36,56 C-52,62 -56,84 -52,124 L-48,196 L48,196 L52,124 C56,84 52,62 36,56 C20,52 -20,52 -36,56Z', BLUE) +
+      p('M0,128 L0,196', 'none', 2) + c(-6, 150, 3, W, 2) + c(-6, 174, 3, W, 2) +
+      p('M-14,54 L0,104 L14,54Z', W) + p('M-5,70 q2,-3 4,0 q2,3 4,0 M-4,80 q2,-3 4,0 q2,3 4,0', 'none', 1.3) +
+      p('M-10,58 Q0,90 10,58', 'none', 2) + c(0, 92, 5, W, 2) + lapel + mir(lapel) + wing + mir(wing) +
+      p('M-44,112 L-22,112', 'none', 2) + p('M-41,112 L-37,101 L-31,106 L-27,112', W, 1.8) +
+      p('M20,140 L35,138 L37,150 L31,161 L23,157 L21,148Z', HATCH, 1.6) +
+      p('M44,62 C64,72 74,104 70,138 L54,140 C57,112 52,92 42,86Z', BLUE) + c(62, 146, 9, W) +
+      p('M-44,64 C-66,70 -90,92 -104,106 L-92,120 C-78,108 -60,96 -46,92Z', BLUE) +
+      p('M-108,108 L-131,98 C-135,96 -137,104 -133,106 L-112,118Z', W, 2.2) + p('M-100,106 L-98,92 C-97,86 -90,87 -91,94 L-93,108', W, 2.2) + c(-104, 116, 10, W) +
+      NECK + head(PEOPLE.jeff) +
+      '<path d="M24,22 L26,28 L32,30 L26,32 L24,38 L22,32 L16,30 L22,28Z" fill="#fff" stroke="' + INK + '" stroke-width="1.4"/>';
+  }
+  function cart() {
+    return p('M0,0 L78,0 L68,40 L10,40Z', W) + p('M13,0 L18,40 M26,0 L29,40 M39,0 L39,40 M52,0 L49,40 M65,0 L60,40 M3,13 L75,13 M6,26 L72,26', 'none', 1.3) +
+      p('M78,0 L90,-14 L100,-14', 'none', 3) + p('M10,40 L6,52 L72,52 L68,40', 'none', 2.4) + c(12, 58, 5, INK, 1) + c(66, 58, 5, INK, 1);
+  }
+  function balloon(x, y, w, h, tx, ty, lines, size) {
+    var s = '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="16" fill="#fff" stroke="' + INK + '" stroke-width="2.4"/>' +
+      p('M' + (x + w * 0.3) + ',' + (y + h - 1.5) + ' L' + tx + ',' + ty + ' L' + (x + w * 0.45) + ',' + (y + h - 1.5), W, 2.4) +
+      '<path d="M' + (x + w * 0.3 + 2) + ',' + (y + h - 1.5) + ' L' + (x + w * 0.45 - 2) + ',' + (y + h - 1.5) + '" stroke="#fff" stroke-width="3"/>';
+    lines.forEach(function (l, i) { s += txt(x + w / 2, y + 22 + i * (size + 4), l, size, { font: "'Courier Prime',monospace", weight: 700 }); });
+    return s;
+  }
+
+  // ---------------------------------------------------------------- scenes
+  var TOONS = {
+    cover: ['-200 -100 400 430', function () {
+      var s = '';
+      for (var i = 0; i < 24; i += 2) {
+        var a1 = i * Math.PI / 12, a2 = (i + 1) * Math.PI / 12;
+        s += '<path d="M0,90 L' + (600 * Math.cos(a1)).toFixed(0) + ',' + (90 + 600 * Math.sin(a1)).toFixed(0) + ' L' + (600 * Math.cos(a2)).toFixed(0) + ',' + (90 + 600 * Math.sin(a2)).toFixed(0) + 'Z" fill="#fff" opacity=".45"/>';
+      }
+      s += p('M150,-100 L150,-76', 'none', 2) + c(150, -50, 26, W, 2.4) + p('M124,-50 L176,-50 M128,-63 L172,-63 M128,-37 L172,-37 M150,-76 C138,-62 138,-38 150,-24 M150,-76 C162,-62 162,-38 150,-24', 'none', 1.4);
+      return s + at(10, -20, 0.98, jeffFigure()) + p('M-146,72 L-156,64 M-149,82 L-162,82 M-146,92 L-156,100', 'none', 2.4);
+    }],
+    fiero: ['0 0 600 300', function () {
+      var s = rect(54, 66, 300, 186, W, 3) + rect(110, 30, 190, 36, BLUE, 3) + txt(205, 55, 'SHADY PINES APTS', 17);
+      for (var r = 0; r < 3; r++) for (var k = 0; k < 6; k++) s += rect(72 + k * 47, 84 + r * 52, 28, 30, r === 1 && k === 4 ? INK : BLUE, 2);
+      s += rect(20, 214, 8, 38, INK, 1) + p('M24,120 L-6,170 L54,170Z M24,150 L-10,214 L58,214Z', BDOTS, 2.4);
+      s += p('M0,252 L600,252', 'none', 3) + p('M470,192 L586,192 L578,252 L478,252Z', BDOTS) +
+        p('M498,190 L536,160 L548,172 L508,192Z', W, 2) + p('M466,192 L590,192 L586,180 L470,180Z', BLUE) + txt(528, 226, 'TRASH', 13, { fill: '#fff' }) +
+        p('M506,148 q7,-8 0,-16 q-7,-8 0,-16 M532,140 q7,-8 0,-16 q-7,-8 0,-16 M556,150 q7,-8 0,-16 q-7,-8 0,-16', 'none', 2) +
+        dot(488, 130, 2.6) + p('M484,126 l-4,-4 M492,126 l4,-4', 'none', 1.2) + dot(570, 120, 2.6) + p('M566,116 l-4,-4 M574,116 l4,-4', 'none', 1.2);
+      s += p('M120,226 L124,206 L160,196 L230,170 L300,160 L360,162 L420,176 L462,190 L468,222 C468,228 462,230 456,230 L130,230 C124,230 120,228 120,226Z', BLUE, 3) +
+        p('M236,174 L300,164 L352,166 L360,192 L236,194Z', W) + p('M300,164 L298,194 M236,194 L240,228 M128,212 L462,206', 'none', 2) +
+        p('M152,196 L174,190 L176,176 L154,182Z', W, 2) + c(188, 230, 25, INK, 2) + c(188, 230, 11, W, 2) + c(412, 230, 25, INK, 2) + c(412, 230, 11, W, 2) +
+        txt(300, 284, 'click... click... click...', 17, { font: "'Crimson Pro',serif", italic: true, weight: 700 });
+      return s + at(74, 120, 0.42, jeffFigure(), true);
+    }],
+    map: ['0 0 600 330', function () {
+      var s = rect(0, 150, 600, 34, W, 2.6) + p('M0,167 L600,167', 'none', 2, ' stroke-dasharray="14 10"') + rect(282, 0, 36, 330, W, 2.6) + p('M300,0 L300,330', 'none', 2, ' stroke-dasharray="14 10"');
+      s += rect(282, 150, 36, 34, W, 0);
+      s += rect(70, 26, 96, 118, BLUE, 3);
+      for (var r = 0; r < 6; r++) s += p('M78,' + (52 + r * 15) + ' L158,' + (52 + r * 15), 'none', 1.6);
+      s += rect(56, 8, 124, 22, W, 2.4) + txt(118, 25, 'SYNERGEX', 15);
+      s += rect(400, 64, 150, 80, W, 3) + p('M392,64 L475,30 L558,64Z', BDOTS, 3);
+      for (var k = 0; k < 5; k++) s += rect(412 + k * 27, 80, 16, 18, BLUE, 1.6) + rect(412 + k * 27, 110, 16, 18, BLUE, 1.6);
+      s += rect(400, 8, 150, 20, W, 2.2) + txt(475, 23, 'SHADY PINES', 14) + p('M576,70 L556,110 L596,110Z M576,96 L552,144 L600,144Z', BDOTS, 2.2);
+      s += rect(340, 214, 230, 92, BDOTS, 3) + p('M340,214 L455,196 L570,214', 'none', 3) + rect(398, 236, 114, 30, W, 2.4) + txt(455, 258, 'COSTCO', 20) + rect(440, 278, 30, 28, W, 2);
+      s += p('M14,230 C10,206 40,196 56,206 C64,186 104,184 116,204 C134,188 172,196 170,220 C196,220 206,250 186,262 C204,282 178,310 150,300 C140,322 92,322 80,304 C56,320 20,308 24,286 C0,282 -4,246 14,230Z', HATCH, 2.6) +
+        rect(36, 236, 136, 44, W, 2) + txt(104, 256, 'HERE BE', 13) + txt(104, 274, 'ACT II', 15) + txt(196, 230, '?', 30) + txt(20, 214, '?', 22);
+      s += rect(150, 146, 108, 36, W, 2.6, 8) + rect(158, 152, 16, 12, BLUE, 1.6) + rect(180, 152, 16, 12, BLUE, 1.6) + rect(202, 152, 16, 12, BLUE, 1.6) + rect(226, 152, 24, 22, INK, 1) +
+        txt(238, 168, '42', 12, { fill: '#fff' }) + c(172, 184, 7, INK, 1) + c(236, 184, 7, INK, 1) + p('M140,160 L130,160 M142,170 L126,170', 'none', 2);
+      s += c(560, 296, 18, W, 2) + p('M560,282 L566,298 L560,294 L554,298Z', INK, 1) + txt(560, 276, 'N', 12);
+      return s;
+    }],
+    monitor: ['0 0 600 380', function () {
+      var s = rect(52, 10, 496, 316, W, 4, 26) + rect(80, 32, 440, 270, INK, 3, 12) + p('M236,326 L364,326 L388,366 L212,366Z', W, 3) + c(500, 314, 4, INK, 1);
+      s += rect(92, 42, 416, 16, BLUE, 0) + txt(100, 54, 'SCORE: 0 OF 130', 10, { anchor: 'start', font: "'Courier Prime',monospace" }) + txt(500, 54, 'FRI 2:30 PM  $12.75', 10, { anchor: 'end', font: "'Courier Prime',monospace" });
+      s += rect(92, 64, 416, 116, DBLUE, 0) + p('M92,150 C160,120 220,140 290,128 C360,116 430,138 508,126 L508,180 L92,180Z', BLUE, 0) + c(450, 96, 16, '#fff', 0) +
+        rect(250, 132, 110, 10, W, 2) + p('M258,142 L258,172 M352,142 L352,172', 'none', 2.4) + rect(282, 104, 40, 28, '#d9d4c4', 2, 3) + rect(288, 109, 28, 18, DBLUE, 1.2) +
+        at(214, 88, 0.26, jeffFigure(), true);
+      s += rect(92, 186, 416, 40, 'none', 0) + '<rect x="92" y="186" width="416" height="40" fill="none" stroke="#8ec9ec" stroke-width="1.5"/>' +
+        txt(100, 202, 'YOU SEE: memo  plant  computer  Merv', 10, { anchor: 'start', font: "'Courier Prime',monospace", fill: '#d7f7d7', weight: 400 }) +
+        txt(100, 218, 'EXITS: lobby  break room', 10, { anchor: 'start', font: "'Courier Prime',monospace", fill: '#d7f7d7', weight: 400 });
+      for (var i = 0; i < 3; i++) s += '<rect x="92" y="' + (234 + i * 12) + '" width="' + [380, 300, 340][i] + '" height="5" fill="#d7f7d7" opacity=".7"/>';
+      s += txt(96, 290, '&gt; _', 13, { anchor: 'start', font: "'Courier Prime',monospace", fill: '#fff' }) + '<rect x="488" y="279" width="18" height="15" fill="none" stroke="#fff" stroke-width="1.5"/>' + txt(497, 291, '&#9834;', 11, { fill: '#fff' });
+      var call = [[1, 24, 50, 92, 50], [2, 24, 120, 92, 120], [3, 576, 206, 508, 206], [4, 576, 246, 480, 246], [5, 24, 286, 92, 286]];
+      call.forEach(function (k) { s += p('M' + k[1] + ',' + k[2] + ' L' + k[3] + ',' + k[4], 'none', 2) + c(k[1], k[2], 14, INK, 0) + txt(k[1], k[2] + 5, k[0], 15, { fill: '#fff' }); });
+      return s;
+    }],
+    warehouse: ['0 0 600 320', function () {
+      var s = p('M0,300 L600,300', 'none', 3);
+      [20, 214].forEach(function (x) {
+        s += rect(x, 14, 8, 286, BLUE, 2) + rect(x + 180, 14, 8, 286, BLUE, 2) + rect(x, 104, 188, 9, BLUE, 2) + rect(x, 200, 188, 9, BLUE, 2);
+      });
+      s += rect(44, 20, 74, 84, W, 3, 10) + rect(48, 8, 66, 14, INK, 1) + txt(81, 56, 'MAYO', 20) + txt(81, 78, '5 GAL', 13);
+      s += rect(128, 40, 56, 64, BDOTS, 2.6, 6) + rect(134, 56, 44, 26, W, 2) + txt(156, 74, 'CHEESE', 9) + rect(36, 136, 70, 64, W, 2.6) + txt(71, 172, '60" TV', 13) + rect(112, 156, 70, 44, W, 2.6) + txt(147, 183, 'TV', 13) + rect(122, 120, 50, 36, W, 2.6) + txt(147, 143, 'VCR', 11);
+      s += rect(232, 46, 46, 58, W, 2.6, 10) + p('M246,46 L246,34 L264,34 L264,46', W, 2.4) + txt(255, 74, 'MUSK', 10) + txt(255, 88, '1 GAL', 9);
+      s += rect(290, 30, 96, 74, DOTS, 2.6) + rect(304, 52, 68, 26, W, 2) + txt(338, 70, 'BATH TISSUE', 8) + rect(310, 85, 56, 14, W, 1.4) + txt(338, 96, '96 ROLLS', 9);
+      s += rect(232, 126, 150, 74, BDOTS, 2.6) + rect(256, 146, 100, 32, W, 2) + txt(306, 167, 'COCKTAIL WEENIES', 8);
+      s += at(196, 254, 0.14, jeffFigure(), true) + at(222, 240, 0.7, cart());
+      s += rect(430, 236, 150, 64, BDOTS, 2.6) + rect(424, 228, 162, 10, W, 2.4);
+      s += at(505, 196, 0.42, bust('marge'));
+      s += rect(452, 218, 52, 8, W, 1.8, 3) + p('M462,218 L462,208 M474,218 L474,206 M486,218 L486,208', 'none', 1.4) + dot(462, 207, 3) + dot(474, 205, 3) + dot(486, 207, 3);
+      s += p('M584,232 L584,140', 'none', 3) + rect(540, 120, 56, 34, W, 2.4) + txt(568, 134, 'FREE', 11) + txt(568, 148, 'SAMPLES', 9);
+      return s;
+    }],
+    fridge: ['0 0 300 320', function () {
+      var s = rect(24, 70, 140, 240, W, 3, 8) + rect(36, 82, 116, 216, '#f4f1e8', 2) + p('M164,74 L250,92 L250,292 L164,306Z', W, 3);
+      s += p('M36,150 L152,150 M36,214 L152,214', 'none', 2.4) + p('M176,140 L240,142 L240,168 L176,166Z M176,214 L240,212 L240,240 L176,242Z', 'none', 2);
+      s += p('M50,122 L84,122 L80,150 L54,150Z', W, 2.2) + '<g transform="rotate(-8 92 118)">' + rect(70, 98, 58, 34, BLUE, 1.6) + txt(99, 112, "KAREN'S", 9) + txt(99, 125, 'I COUNTED', 8) + '</g>';
+      s += rect(100, 176, 40, 38, W, 2.2) + p('M100,176 L120,164 L140,176', W, 2.2) + txt(120, 200, 'MILK', 9);
+      s += el(70, 200, 22, 12, HATCH, 2.2) + p('M60,186 q5,-6 0,-12 M76,184 q5,-6 0,-12', 'none', 1.6);
+      s += p('M78,64 L82,24 L120,24 L124,64Z', INK, 2.6) + p('M124,32 C140,32 140,56 124,56', 'none', 3) + rect(76, 18, 50, 8, W, 2) +
+        p('M88,14 q6,-6 0,-12 M102,12 q6,-6 0,-12 M116,14 q6,-6 0,-12', 'none', 1.8);
+      return s;
+    }],
+  };
+  Object.keys(PEOPLE).forEach(function (who) {
+    if (who === 'todd') return;
+    TOONS['p-' + who] = ['-60 -104 120 216', function () { return bust(who); }];
+  });
+  TOONS['p-todds'] = ['-60 -104 120 216', function () { return at(24, 27, 0.76, bust('todd')) + at(-24, 27, 0.76, bust('todd')); }];
+
+  document.querySelectorAll('svg[data-toon]').forEach(function (svg) {
+    var t = TOONS[svg.getAttribute('data-toon')];
+    if (!t) return;
+    svg.setAttribute('viewBox', t[0]);
+    svg.innerHTML = t[1]();
+  });
+})();
+</script>
+</body>
+</html>

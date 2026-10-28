@@ -257,5 +257,37 @@ check('time display', () => {
   assert.strictEqual(E.fmtTime(1440 + 9 * 60 + 5), 'Sat 9:05 AM');
 });
 
+check('manual covers every point without spelling out solutions', () => {
+  const html = fs.readFileSync(path.join(root, 'manual.html'), 'utf8');
+  assert.ok(html.includes('href="./"'), 'manual needs a play-now link');
+  const covered = new Set();
+  for (const m of html.matchAll(/data-covers="([^"]+)"/g)) m[1].split(/\s+/).forEach((id) => {
+    assert.ok(LSJ.scores[id], 'unknown score id in manual: ' + id);
+    covered.add(id);
+  });
+  const missing = Object.keys(LSJ.scores).filter((id) => !covered.has(id));
+  assert.deepStrictEqual(missing, [], 'manual misses: ' + missing.join(', '));
+  const total = Object.values(LSJ.scores).reduce((a, s) => a + s.pts, 0);
+  const areas = [...html.matchAll(/data-pts="(\d+)"/g)].map((m) => +m[1]);
+  assert.strictEqual(areas.reduce((a, b) => a + b, 0), total, 'area points do not add up to ' + total);
+  const sections = html.split(/(?=<[^>]+data-pts=")/).slice(1);
+  sections.forEach((sec) => {
+    const want = +sec.match(/data-pts="(\d+)"/)[1];
+    const ids = [...sec.matchAll(/data-covers="([^"]+)"/g)].flatMap((m) => m[1].split(/\s+/));
+    const got = ids.reduce((a, id) => a + LSJ.scores[id].pts, 0);
+    assert.strictEqual(got, want, 'section worth ' + want + ' covers ' + got + ' (' + ids.join(' ') + ')');
+  });
+  E.start();
+  const forbidden = [];
+  for (const c of [...walkthrough.slice(0, 4), 'play solitaire', ...walkthrough.slice(4)]) {
+    const before = E.state.score;
+    E.exec(c);
+    if (E.state.score > before && !/^(go|drive|take bus)\b/.test(c)) forbidden.push(c.toUpperCase());
+  }
+  const text = html.replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<[^>]+>/g, ' ').replace(/&#39;|&rsquo;/g, "'").replace(/\s+/g, ' ').toUpperCase();
+  const leaks = forbidden.filter((c) => text.includes(c));
+  assert.deepStrictEqual(leaks, [], 'manual spoils exact commands: ' + leaks.join(', '));
+});
+
 console.log(failures ? `\n${failures} FAILED` : '\nAll tests passed.');
 process.exit(failures ? 1 : 0);
